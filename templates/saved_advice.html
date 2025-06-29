@@ -209,6 +209,26 @@
             margin-top: 1rem;
         }
 
+        .delete-advice-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .delete-advice-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
@@ -341,56 +361,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // JavaScript to load saved advice dynamically
+        // JavaScript to load saved advice dynamically from localStorage
         document.addEventListener("DOMContentLoaded", function() {
-            // Replace this with actual data from localStorage
-            const savedAdvice = [
-                {
-                    icon: "fas fa-credit-card",
-                    title: "Monitor Your Credit Card Activity",
-                    description: "Regularly check your credit card statements and set up alerts for unusual transactions. Report any suspicious activity immediately to your bank.",
-                    date: "January 15, 2024",
-                    category: "Security"
-                },
-                {
-                    icon: "fas fa-lock",
-                    title: "Use Strong Passwords",
-                    description: "Create unique, complex passwords for all your financial accounts. Consider using a password manager for better security.",
-                    date: "January 12, 2024",
-                    category: "Authentication"
-                },
-                {
-                    icon: "fas fa-wifi",
-                    title: "Secure Your Network",
-                    description: "Avoid making financial transactions on public Wi-Fi networks. Use a VPN when accessing sensitive information remotely.",
-                    date: "January 10, 2024",
-                    category: "Network Security"
-                },
-                {
-                    icon: "fas fa-mobile-alt",
-                    title: "Enable Two-Factor Authentication",
-                    description: "Add an extra layer of security to your accounts by enabling 2FA. This significantly reduces the risk of unauthorized access.",
-                    date: "January 8, 2024",
-                    category: "Authentication"
-                },
-                {
-                    icon: "fas fa-envelope",
-                    title: "Beware of Phishing Emails",
-                    description: "Never click on suspicious links or provide personal information in response to emails. Verify the sender's identity before responding.",
-                    date: "January 5, 2024",
-                    category: "Email Security"
-                },
-                {
-                    icon: "fas fa-chart-line",
-                    title: "Regular Security Audits",
-                    description: "Conduct regular reviews of your financial accounts and security settings. Update your security measures as needed.",
-                    date: "January 3, 2024",
-                    category: "Best Practices"
-                }
-            ];
+            loadSavedAdvice();
+        });
 
+        function loadSavedAdvice() {
+            const savedAdvice = JSON.parse(localStorage.getItem('savedAdvice') || '[]');
             const adviceGrid = document.getElementById("adviceGrid");
             const emptyState = document.getElementById("emptyState");
+
+            // Clear existing content
+            adviceGrid.innerHTML = '';
 
             if (savedAdvice.length > 0) {
                 savedAdvice.forEach(advice => {
@@ -398,19 +380,32 @@
                     card.className = "advice-card";
                     card.innerHTML = `
                         <div class="advice-icon">
-                            <i class="${advice.icon}"></i>
+                            <i class="fas fa-robot"></i>
                         </div>
                         <h3 class="advice-title">${advice.title}</h3>
                         <p class="advice-description">${advice.description}</p>
                         <div class="advice-date">Saved on: ${advice.date}</div>
                         <span class="advice-category">${advice.category}</span>
+                        <button class="delete-advice-btn" onclick="deleteAdvice(${advice.id})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                     `;
                     adviceGrid.appendChild(card);
                 });
+                emptyState.style.display = "none";
             } else {
                 emptyState.style.display = "block";
             }
-        });
+        }
+
+        function deleteAdvice(adviceId) {
+            if (confirm('Are you sure you want to delete this advice?')) {
+                const savedAdvice = JSON.parse(localStorage.getItem('savedAdvice') || '[]');
+                const updatedAdvice = savedAdvice.filter(advice => advice.id !== adviceId);
+                localStorage.setItem('savedAdvice', JSON.stringify(updatedAdvice));
+                loadSavedAdvice(); // Reload the page
+            }
+        }
     </script>
 </body>
 </html> 
