@@ -460,6 +460,11 @@
             text-align: center;
         }
         
+        /* Hide save button for initial message */
+        .initial-message + .save-advice-section {
+            display: none !important;
+        }
+        
         .save-advice-btn {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
@@ -586,7 +591,7 @@
         </div>
 
         <div class="chatbot-container" id="chatLog">
-            <div class="chat-message bot-message" data-advice="Hello! I'm here to help you understand your fraud detection results. You can ask me about: Why specific transactions were flagged as fraud, How to interpret the risk scores, What the different columns mean, How to improve fraud detection, Best practices for transaction monitoring. What would you like to know about your results?">
+            <div class="chat-message bot-message initial-message" data-advice="Hello! I'm here to help you understand your fraud detection results. You can ask me about: Why specific transactions were flagged as fraud, How to interpret the risk scores, What the different columns mean, How to improve fraud detection, Best practices for transaction monitoring. What would you like to know about your results?">
                 <strong><i class="fas fa-robot"></i> Assistant:</strong><br>
                 Hello! I'm here to help you understand your fraud detection results. You can ask me about:<br>
                 • Why specific transactions were flagged as fraud<br>
