@@ -369,9 +369,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, questions, or feature requests:
 
-- **Email**: support@fraudguardpro.com
-- **Issues**: [GitHub Issues](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System/issues)
-- **Documentation**: [Wiki](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System/wiki)
+- **GitHub Issues**: [Create an Issue](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System/issues)
+- **Repository**: [View Source Code](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System)
+- **Live Demo**: [Try the Application](https://fraudguard-pro-ai-fraud-detection-system-igi4.onrender.com/)
 
 ---
 
