@@ -10,7 +10,9 @@
 
 ## 🚀 Live Demo
 
-**Access the application:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
+**🌐 Hosted Application:** [https://fraudguard-pro-ai-fraud-detection-system-igi4.onrender.com/](https://fraudguard-pro-ai-fraud-detection-system-igi4.onrender.com/)
+
+**🔧 Local Development:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ## 📋 Table of Contents
 
@@ -92,8 +94,8 @@
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/yourusername/fraudguard-pro.git
-cd fraudguard-pro
+git clone https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System.git
+cd FraudGuard-Pro-AI-Fraud-Detection-System
 ```
 
 ### Step 2: Create Virtual Environment
@@ -368,8 +370,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For support, questions, or feature requests:
 
 - **Email**: support@fraudguardpro.com
-- **Issues**: [GitHub Issues](https://github.com/yourusername/fraudguard-pro/issues)
-- **Documentation**: [Wiki](https://github.com/yourusername/fraudguard-pro/wiki)
+- **Issues**: [GitHub Issues](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System/issues)
+- **Documentation**: [Wiki](https://github.com/Pawan22104168/FraudGuard-Pro-AI-Fraud-Detection-System/wiki)
 
 ---
 
