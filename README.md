@@ -328,6 +328,14 @@ UPLOAD_FOLDER=uploads
 ![AI Assistant](screenshots/chatbot.png)
 *Intelligent chatbot providing fraud detection insights*
 
+### **Transaction History**
+![Transaction History](screenshots/transaction_history.png)
+*Comprehensive transaction analytics with charts and statistics*
+
+### **About Page**
+![About Page](screenshots/about.png)
+*Detailed information about the system and its capabilities*
+
 ## 🤝 Contributing
 
 We welcome contributions to improve FraudGuard Pro! Here's how you can help:
