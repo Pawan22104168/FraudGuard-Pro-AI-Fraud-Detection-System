@@ -329,11 +329,11 @@ UPLOAD_FOLDER=uploads
 *Intelligent chatbot providing fraud detection insights*
 
 ### **Transaction History**
-![Transaction History](screenshots/transaction_history.png)
+![Transaction History](screenshots/transactionhistory.png)
 *Comprehensive transaction analytics with charts and statistics*
 
 ### **About Page**
-![About Page](screenshots/about.png)
+![About Page](screenshots/About.png)
 *Detailed information about the system and its capabilities*
 
 ## 🤝 Contributing
