@@ -312,84 +312,22 @@
                 </p>
             </div>
 
-            <div class="advice-grid">
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3 class="advice-title">Monitor Your Credit Card Activity</h3>
-                    <p class="advice-description">
-                        Regularly check your credit card statements and set up alerts for unusual transactions. 
-                        Report any suspicious activity immediately to your bank.
-                    </p>
-                    <div class="advice-date">Saved on: January 15, 2024</div>
-                    <span class="advice-category">Security</span>
+            <div class="advice-grid" id="adviceGrid">
+                <!-- Saved advice will be loaded here dynamically -->
+            </div>
+            
+            <!-- Empty state (shown when no advice is saved) -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-bookmark"></i>
                 </div>
-
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3 class="advice-title">Use Strong Passwords</h3>
-                    <p class="advice-description">
-                        Create unique, complex passwords for all your financial accounts. 
-                        Consider using a password manager for better security.
-                    </p>
-                    <div class="advice-date">Saved on: January 12, 2024</div>
-                    <span class="advice-category">Authentication</span>
-                </div>
-
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <h3 class="advice-title">Secure Your Network</h3>
-                    <p class="advice-description">
-                        Avoid making financial transactions on public Wi-Fi networks. 
-                        Use a VPN when accessing sensitive information remotely.
-                    </p>
-                    <div class="advice-date">Saved on: January 10, 2024</div>
-                    <span class="advice-category">Network Security</span>
-                </div>
-
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="advice-title">Enable Two-Factor Authentication</h3>
-                    <p class="advice-description">
-                        Add an extra layer of security to your accounts by enabling 2FA. 
-                        This significantly reduces the risk of unauthorized access.
-                    </p>
-                    <div class="advice-date">Saved on: January 8, 2024</div>
-                    <span class="advice-category">Authentication</span>
-                </div>
-
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="advice-title">Beware of Phishing Emails</h3>
-                    <p class="advice-description">
-                        Never click on suspicious links or provide personal information in response to emails. 
-                        Verify the sender's identity before responding.
-                    </p>
-                    <div class="advice-date">Saved on: January 5, 2024</div>
-                    <span class="advice-category">Email Security</span>
-                </div>
-
-                <div class="advice-card">
-                    <div class="advice-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="advice-title">Regular Security Audits</h3>
-                    <p class="advice-description">
-                        Conduct regular reviews of your financial accounts and security settings. 
-                        Update your security measures as needed.
-                    </p>
-                    <div class="advice-date">Saved on: January 3, 2024</div>
-                    <span class="advice-category">Best Practices</span>
-                </div>
+                <h3 class="empty-title">No Saved Advice Yet</h3>
+                <p class="empty-description">
+                    Start using the AI Assistant to get personalized fraud prevention advice and save it here for future reference.
+                </p>
+                <a href="/" class="btn-primary">
+                    <i class="fas fa-robot"></i> Try AI Assistant
+                </a>
             </div>
         </div>
     </main>
@@ -402,5 +340,77 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript to load saved advice dynamically
+        document.addEventListener("DOMContentLoaded", function() {
+            // Replace this with actual data from localStorage
+            const savedAdvice = [
+                {
+                    icon: "fas fa-credit-card",
+                    title: "Monitor Your Credit Card Activity",
+                    description: "Regularly check your credit card statements and set up alerts for unusual transactions. Report any suspicious activity immediately to your bank.",
+                    date: "January 15, 2024",
+                    category: "Security"
+                },
+                {
+                    icon: "fas fa-lock",
+                    title: "Use Strong Passwords",
+                    description: "Create unique, complex passwords for all your financial accounts. Consider using a password manager for better security.",
+                    date: "January 12, 2024",
+                    category: "Authentication"
+                },
+                {
+                    icon: "fas fa-wifi",
+                    title: "Secure Your Network",
+                    description: "Avoid making financial transactions on public Wi-Fi networks. Use a VPN when accessing sensitive information remotely.",
+                    date: "January 10, 2024",
+                    category: "Network Security"
+                },
+                {
+                    icon: "fas fa-mobile-alt",
+                    title: "Enable Two-Factor Authentication",
+                    description: "Add an extra layer of security to your accounts by enabling 2FA. This significantly reduces the risk of unauthorized access.",
+                    date: "January 8, 2024",
+                    category: "Authentication"
+                },
+                {
+                    icon: "fas fa-envelope",
+                    title: "Beware of Phishing Emails",
+                    description: "Never click on suspicious links or provide personal information in response to emails. Verify the sender's identity before responding.",
+                    date: "January 5, 2024",
+                    category: "Email Security"
+                },
+                {
+                    icon: "fas fa-chart-line",
+                    title: "Regular Security Audits",
+                    description: "Conduct regular reviews of your financial accounts and security settings. Update your security measures as needed.",
+                    date: "January 3, 2024",
+                    category: "Best Practices"
+                }
+            ];
+
+            const adviceGrid = document.getElementById("adviceGrid");
+            const emptyState = document.getElementById("emptyState");
+
+            if (savedAdvice.length > 0) {
+                savedAdvice.forEach(advice => {
+                    const card = document.createElement("div");
+                    card.className = "advice-card";
+                    card.innerHTML = `
+                        <div class="advice-icon">
+                            <i class="${advice.icon}"></i>
+                        </div>
+                        <h3 class="advice-title">${advice.title}</h3>
+                        <p class="advice-description">${advice.description}</p>
+                        <div class="advice-date">Saved on: ${advice.date}</div>
+                        <span class="advice-category">${advice.category}</span>
+                    `;
+                    adviceGrid.appendChild(card);
+                });
+            } else {
+                emptyState.style.display = "block";
+            }
+        });
+    </script>
 </body>
 </html> 

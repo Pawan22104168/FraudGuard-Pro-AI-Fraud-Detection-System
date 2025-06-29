@@ -247,11 +247,12 @@
             border-left: 3px solid #2563eb;
         }
         .bot-message {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            margin-right: 30px;
-            border-bottom-left-radius: 4px;
-            border-right: 3px solid rgba(255, 255, 255, 0.2);
+            background: rgba(30, 64, 175, 0.1);
+            border-left: 4px solid #1e40af;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            position: relative;
         }
         .chat-input-group {
             display: flex;
@@ -453,6 +454,30 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
+        
+        .save-advice-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .save-advice-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .save-advice-btn.saved {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
     </style>
 </head>
 <body data-fraud-detected="{{ 'true' if fraud_detected else 'false' }}">
@@ -557,7 +582,10 @@
         </div>
 
         <div class="chatbot-container" id="chatLog">
-            <div class="chat-message bot-message">
+            <div class="chat-message bot-message" data-advice="Hello! I'm here to help you understand your fraud detection results. You can ask me about: Why specific transactions were flagged as fraud, How to interpret the risk scores, What the different columns mean, How to improve fraud detection, Best practices for transaction monitoring. What would you like to know about your results?">
+                <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
+                    <i class="fas fa-bookmark"></i> Save
+                </button>
                 <strong><i class="fas fa-robot"></i> Assistant:</strong><br>
                 Hello! I'm here to help you understand your fraud detection results. You can ask me about:<br>
                 • Why specific transactions were flagged as fraud<br>
@@ -650,7 +678,10 @@
         .then(response => response.json())
         .then(data => {
             chatLog.innerHTML += `
-                <div class="chat-message bot-message">
+                <div class="chat-message bot-message" data-advice="${data.reply}">
+                    <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
+                        <i class="fas fa-bookmark"></i> Save
+                    </button>
                     <strong><i class="fas fa-robot"></i> Assistant:</strong><br>
                     ${data.reply}
                 </div>
@@ -674,6 +705,33 @@
     function askQuestion(question) {
         document.getElementById('userInput').value = question;
         sendMessage();
+    }
+    
+    // Function to save advice from chatbot
+    function saveAdviceFromElement(button) {
+        const messageDiv = button.closest('.bot-message');
+        const advice = messageDiv.getAttribute('data-advice');
+        
+        // Save to localStorage for now (in a real app, this would go to a database)
+        const savedAdvice = JSON.parse(localStorage.getItem('savedAdvice') || '[]');
+        const newAdvice = {
+            id: Date.now(),
+            title: 'AI Fraud Analysis Advice',
+            description: advice,
+            category: 'AI Assistant',
+            date: new Date().toLocaleDateString()
+        };
+        
+        savedAdvice.push(newAdvice);
+        localStorage.setItem('savedAdvice', JSON.stringify(savedAdvice));
+        
+        // Update button appearance
+        button.innerHTML = '<i class="fas fa-check"></i> Saved';
+        button.classList.add('saved');
+        button.disabled = true;
+        
+        // Show success message
+        alert('Advice saved successfully! You can view it in the Saved Advice section.');
     }
     
     // Enter key support for chat
