@@ -397,11 +397,19 @@
             text-align: center;
             transition: all 0.3s ease;
             background: var(--bg-tertiary);
+            cursor: pointer;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .file-input-wrapper:hover {
             border-color: var(--primary-blue);
             background: rgba(30, 64, 175, 0.05);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .file-input-wrapper.dragover {
@@ -416,6 +424,9 @@
             width: 100%;
             height: 100%;
             cursor: pointer;
+            top: 0;
+            left: 0;
+            z-index: 10;
         }
 
         .upload-icon {
@@ -734,18 +745,33 @@
         const submitBtn = document.getElementById('submitBtn');
         const loading = document.getElementById('loading');
 
+        // Click on wrapper to trigger file input
+        fileInputWrapper.addEventListener('click', (e) => {
+            // Only trigger if not clicking on the file input itself
+            if (e.target !== fileInput) {
+                fileInput.click();
+            }
+        });
+
         // Drag and drop functionality
         fileInputWrapper.addEventListener('dragover', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             fileInputWrapper.classList.add('dragover');
         });
 
-        fileInputWrapper.addEventListener('dragleave', () => {
-            fileInputWrapper.classList.remove('dragover');
+        fileInputWrapper.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Only remove dragover if leaving the wrapper completely
+            if (!fileInputWrapper.contains(e.relatedTarget)) {
+                fileInputWrapper.classList.remove('dragover');
+            }
         });
 
         fileInputWrapper.addEventListener('drop', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             fileInputWrapper.classList.remove('dragover');
             const files = e.dataTransfer.files;
             if (files.length > 0) {
@@ -767,6 +793,9 @@
                 
                 fileInputWrapper.style.borderColor = '#10b981';
                 fileInputWrapper.style.background = 'rgba(16, 185, 129, 0.05)';
+                
+                // Enable submit button
+                submitBtn.disabled = false;
             }
         }
 
