@@ -317,16 +317,28 @@ UPLOAD_FOLDER=uploads
 ## 📱 Screenshots
 
 ### **Main Dashboard**
-![Main Dashboard](screenshots/dashboard.png)
 *Professional upload interface with fraud detection capabilities*
 
+**To capture:** Take a screenshot of the main page showing the file upload form and interface.
+
 ### **Results Analysis**
-![Results Analysis](screenshots/results.png)
 *Comprehensive fraud analysis with detailed transaction information*
 
+**To capture:** Take a screenshot after uploading a CSV file showing the results table with fraud detection results.
+
 ### **AI Assistant**
-![AI Assistant](screenshots/chatbot.png)
 *Intelligent chatbot providing fraud detection insights*
+
+**To capture:** Take a screenshot of the AI assistant chat interface showing a conversation about fraud detection.
+
+---
+
+**📸 Screenshot Instructions:**
+1. **Main Dashboard:** Open https://fraudguard-pro-ai-fraud-detection-system-igi4.onrender.com/ and capture the main page
+2. **Results Analysis:** Upload a sample CSV file, click "Analyze for Fraud", and capture the results page
+3. **AI Assistant:** Open the chat interface and capture a conversation about fraud detection
+
+*Note: Screenshots should be saved as PNG or JPG files in the screenshots folder for better documentation.*
 
 ## 🤝 Contributing
 
