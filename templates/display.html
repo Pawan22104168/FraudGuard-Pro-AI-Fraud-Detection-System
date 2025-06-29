@@ -596,11 +596,6 @@
                 • Best practices for transaction monitoring<br><br>
                 What would you like to know about your results?
             </div>
-            <div class="save-advice-section">
-                <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
-                    <i class="fas fa-bookmark"></i> <strong>Save This Advice</strong>
-                </button>
-            </div>
         </div>
 
         <div class="chat-input-group">
@@ -749,7 +744,7 @@
             sendMessage();
         }
     });
-
+    
     // Fraud alert sound for fraudulent transactions
     const fraudRows = document.querySelectorAll('.badge-fraud');
     if (fraudRows.length > 0) {
