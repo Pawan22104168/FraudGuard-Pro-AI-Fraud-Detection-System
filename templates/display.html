@@ -246,7 +246,7 @@
             border-bottom-right-radius: 4px;
             border-left: 3px solid #2563eb;
         }
-        .bot-message {
+        .chat-message.bot-message {
             background: rgba(30, 64, 175, 0.1);
             border-left: 4px solid #1e40af;
             padding: 15px;
@@ -455,28 +455,32 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
+        .save-advice-section {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
         .save-advice-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.8;
+            box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
         }
         
         .save-advice-btn:hover {
-            opacity: 1;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
         }
         
         .save-advice-btn.saved {
             background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
         }
     </style>
 </head>
@@ -583,9 +587,6 @@
 
         <div class="chatbot-container" id="chatLog">
             <div class="chat-message bot-message" data-advice="Hello! I'm here to help you understand your fraud detection results. You can ask me about: Why specific transactions were flagged as fraud, How to interpret the risk scores, What the different columns mean, How to improve fraud detection, Best practices for transaction monitoring. What would you like to know about your results?">
-                <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
-                    <i class="fas fa-bookmark"></i> Save
-                </button>
                 <strong><i class="fas fa-robot"></i> Assistant:</strong><br>
                 Hello! I'm here to help you understand your fraud detection results. You can ask me about:<br>
                 • Why specific transactions were flagged as fraud<br>
@@ -594,6 +595,11 @@
                 • How to improve fraud detection<br>
                 • Best practices for transaction monitoring<br><br>
                 What would you like to know about your results?
+            </div>
+            <div class="save-advice-section">
+                <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
+                    <i class="fas fa-bookmark"></i> <strong>Save This Advice</strong>
+                </button>
             </div>
         </div>
 
@@ -679,11 +685,13 @@
         .then(data => {
             chatLog.innerHTML += `
                 <div class="chat-message bot-message" data-advice="${data.reply}">
-                    <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
-                        <i class="fas fa-bookmark"></i> Save
-                    </button>
                     <strong><i class="fas fa-robot"></i> Assistant:</strong><br>
                     ${data.reply}
+                </div>
+                <div class="save-advice-section">
+                    <button class="save-advice-btn" onclick="saveAdviceFromElement(this)">
+                        <i class="fas fa-bookmark"></i> <strong>Save This Advice</strong>
+                    </button>
                 </div>
             `;
             
@@ -709,7 +717,8 @@
     
     // Function to save advice from chatbot
     function saveAdviceFromElement(button) {
-        const messageDiv = button.closest('.bot-message');
+        const saveSection = button.closest('.save-advice-section');
+        const messageDiv = saveSection.previousElementSibling;
         const advice = messageDiv.getAttribute('data-advice');
         
         // Save to localStorage
@@ -726,7 +735,7 @@
         localStorage.setItem('savedAdvice', JSON.stringify(savedAdvice));
         
         // Update button appearance
-        button.innerHTML = '<i class="fas fa-check"></i> Saved';
+        button.innerHTML = '<i class="fas fa-check"></i> <strong>Advice Saved!</strong>';
         button.classList.add('saved');
         button.disabled = true;
         
