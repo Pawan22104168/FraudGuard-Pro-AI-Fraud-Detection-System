@@ -74,6 +74,10 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/saved_advice')
+def saved_advice():
+    return render_template('saved_advice.html')
+
 @app.route('/transaction_history')
 def transaction_history():
     # Sample transaction history data for demonstration
