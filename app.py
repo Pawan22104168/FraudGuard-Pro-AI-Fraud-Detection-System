@@ -46,9 +46,9 @@ def chat():
         user_message = request.json.get('message', '')
     
     # Import and use the updated chatbot
-    from chatbot import ask_huggingface
+    from chatbot import ask_gemini_api
     try:
-        reply = ask_huggingface(user_message)
+        reply = ask_gemini_api(user_message)
     except Exception as e:
         reply = f"Error processing your question: {str(e)}"
     

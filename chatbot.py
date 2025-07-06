@@ -197,3 +197,8 @@ Please provide a clear, helpful response focused on fraud detection and financia
 def ask_huggingface(message):
     """Wrapper function to maintain compatibility with existing code"""
     return ask_gemini(message)
+
+# Main function for Gemini API
+def ask_gemini_api(message):
+    """Main function for Gemini API calls"""
+    return ask_gemini(message)
