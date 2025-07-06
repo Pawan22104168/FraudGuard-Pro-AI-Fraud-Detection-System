@@ -1,10 +1,10 @@
-from dotenv import load_dotenv
 import os
 import requests
 
-load_dotenv()
+# Get the token from environment variable
 HF_API_TOKEN = os.getenv('HF_API_TOKEN', '')
-HF_MODEL = 'bigscience/bloomz-560m'
+# Using a more reliable model that's available
+HF_MODEL = 'microsoft/DialoGPT-medium'
 HF_API_URL = f'https://api-inference.huggingface.co/models/{HF_MODEL}'
 
 def ask_huggingface(message):
