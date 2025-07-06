@@ -10,6 +10,8 @@ import requests
 
 load_dotenv()
 
+# Note: HF_API_TOKEN is no longer used, but kept for compatibility
+# The chatbot now uses GEMINI_API_KEY
 key = os.getenv("HF_API_TOKEN")
 app = Flask(__name__, template_folder='templates')
 app.config['UPLOAD_FOLDER'] = 'uploads'
