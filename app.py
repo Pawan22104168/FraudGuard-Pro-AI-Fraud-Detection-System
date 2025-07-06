@@ -297,7 +297,8 @@ if __name__ == '__main__':
         print(f"Debug mode: {'on' if app.debug else 'off'}")
         print(f"Upload folder: {app.config['UPLOAD_FOLDER']}")
         print(f"Templates folder: {app.template_folder}")
-        app.run(debug=True, host='0.0.0.0', port=5000)
+        port = int(os.environ.get('PORT', 5000))
+        app.run(debug=True, host='0.0.0.0', port=port)
     except Exception as e:
         print(f"Error starting Flask application: {str(e)}")
         sys.exit(1)
