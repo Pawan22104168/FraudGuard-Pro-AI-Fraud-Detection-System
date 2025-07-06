@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
 [![Machine Learning](https://img.shields.io/badge/ML-Scikit--learn-orange.svg)](https://scikit-learn.org/)
-[![AI](https://img.shields.io/badge/AI-HuggingFace-yellow.svg)](https://huggingface.co/)
+[![AI](https://img.shields.io/badge/AI-Google%20Gemini-blue.svg)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
 > **Advanced AI-powered credit card fraud detection system designed to protect financial institutions and businesses from fraudulent transactions with real-time analysis and intelligent chatbot assistance.**
@@ -41,7 +41,7 @@
 - **Batch Processing** - Handle multiple transactions simultaneously
 
 ### 🤖 **AI Assistant Integration**
-- **Intelligent Chatbot** - Powered by HuggingFace AI models
+- **Intelligent Chatbot** - Powered by Google Gemini AI
 - **Context-Aware Responses** - Understands fraud detection queries
 - **Real-time Analysis** - Provides detailed explanations for flagged transactions
 - **Interactive Guidance** - Step-by-step fraud prevention advice
@@ -69,8 +69,8 @@
 - **NumPy** - Numerical computing
 
 ### **AI & NLP**
-- **HuggingFace Transformers** - AI model integration
-- **Inference API** - Real-time AI responses
+- **Google Gemini AI** - Advanced AI model integration
+- **Gemini API** - Real-time AI responses
 - **Natural Language Processing** - Understanding user queries
 
 ### **Frontend**
@@ -117,7 +117,7 @@ pip install -r requirements.txt
 ### Step 4: Set Up Environment Variables
 Create a `.env` file in the root directory:
 ```env
-HF_API_TOKEN=your_huggingface_token_here
+GEMINI_API_KEY=your_gemini_api_key_here
 FLASK_ENV=development
 ```
 
@@ -200,7 +200,7 @@ Open your browser and navigate to: `http://127.0.0.1:5000`
                        ┌─────────────────┐
                        │   AI Assistant  │
                        │                 │
-                       │ • HuggingFace   │
+                       │ • Google Gemini │
                        │ • NLP Processing│
                        │ • Context Aware │
                        └─────────────────┘
@@ -248,8 +248,8 @@ Time,Amount,V1,V2,V3,Class
 
 ### **Environment Variables**
 ```env
-# HuggingFace API Configuration
-HF_API_TOKEN=your_huggingface_token_here
+# Google Gemini API Configuration
+GEMINI_API_KEY=your_gemini_api_key_here
 
 # Flask Configuration
 FLASK_ENV=development
@@ -368,7 +368,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Scikit-learn** - Machine learning framework
-- **HuggingFace** - AI model integration
+- **Google Gemini** - AI model integration
 - **Flask** - Web framework
 - **Bootstrap** - UI framework
 - **Font Awesome** - Icon library
