@@ -42,28 +42,14 @@ def chat():
     user_message = ''
     if request.is_json and request.json is not None:
         user_message = request.json.get('message', '')
-    headers = {
-        "Authorization": f"Bearer {key}"
-    }
-    payload = {
-        "inputs": f"User: {user_message}\nAssistant:",
-        "parameters": {"max_new_tokens": 128}
-    }
+    
+    # Import and use the updated chatbot
+    from chatbot import ask_huggingface
     try:
-        response = requests.post(
-            "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
-            headers=headers,
-            json=payload
-        )
-        data = response.json()
-        if isinstance(data, list) and len(data) > 0 and "generated_text" in data[0]:
-            reply = data[0]["generated_text"].split("Assistant:")[-1].strip()
-        elif isinstance(data, dict) and "error" in data:
-            reply = f"Error from Hugging Face: {data['error']}"
-        else:
-            reply = str(data)
+        reply = ask_huggingface(user_message)
     except Exception as e:
-        reply = f"Error communicating with Hugging Face: {str(e)}"
+        reply = f"Error processing your question: {str(e)}"
+    
     return jsonify({'reply': reply})
 
 @app.route('/')
