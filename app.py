@@ -23,14 +23,16 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
 # Initialize fraud detection system
-fraud_system = FraudDetectionSystem()
+fraud_system = None
 try:
+    fraud_system = FraudDetectionSystem()
     fraud_system.load_model('fraud_detection_model.joblib')
     print("Model loaded from fraud_detection_model.joblib")
     print("Model loaded successfully")
 except Exception as e:
     print(f"Error loading model: {str(e)}")
     print("Please ensure fraud_detection_model.joblib exists in the current directory")
+    print("App will continue without model for now...")
 
 def format_time(seconds):
     """Convert seconds to readable time format"""
@@ -208,6 +210,11 @@ def upload_file():
                         return redirect(url_for('index'))
                 
                 try:
+                    # Check if model is loaded
+                    if fraud_system is None:
+                        flash("Fraud detection model is not available. Please try again later.")
+                        return redirect(url_for('index'))
+                    
                     # Use the required features for prediction
                     X = df[required_features].fillna(0)
                     print(f"Features shape: {X.shape}")
@@ -299,7 +306,9 @@ if __name__ == '__main__':
         print(f"Debug mode: {'on' if app.debug else 'off'}")
         print(f"Upload folder: {app.config['UPLOAD_FOLDER']}")
         print(f"Templates folder: {app.template_folder}")
+        print(f"Model status: {'Loaded' if fraud_system else 'Not loaded'}")
         port = int(os.environ.get('PORT', 5000))
+        print(f"Starting server on port {port}...")
         app.run(debug=False, host='0.0.0.0', port=port)
     except Exception as e:
         print(f"Error starting Flask application: {str(e)}")
